@@ -1,0 +1,80 @@
+#wpadminbar * .noticon {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5) !important;
+  margin-top: 1px !important;
+  opacity: .6;
+}
+#wpadminbar .noticon-notification:before {
+  content: "\f130";
+  font: 400 15px/1 dashicons;
+}
+#wpadminbar #bbpab-notes-unread-count {
+  margin: 4px 0 0 0;
+  display: inline-block;
+}
+#wpadminbar #wp-admin-bar-notes {
+  padding-right: 1px!important;
+  cursor: pointer;
+}
+#wpadminbar #wp-admin-bar-notes .ab-item {
+  width: 26px;
+}
+#wpadminbar #wp-admin-bar-notes > .ab-item {
+  padding: 0 5px!important;
+}
+#wpadminbar #wp-admin-bar-notes.hover > .ab-item {
+  color: #fafafa;
+  background: none;
+}
+#wpadminbar #wp-admin-bar-notes .bbpab-notes-panel-header {
+  padding: 0 10px;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel {
+  background: #f5f5f5;
+  padding: 5px 0;
+  position: absolute;
+  right: 0;
+  border: none;
+  width: 300px;
+  min-height: 200px!important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  color: #222;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel a {
+  color: #222;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid #ECECEC;
+  padding: 5px 10px;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item:last-child {
+  border-bottom: none;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item .bbpab-author {
+  float: left;
+  width: 40px;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item .bbpab-author img {
+  width: 32px;
+  height: auto;
+  border-radius: 500%;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item .bbpab-notif-body {
+  float: left;
+  width: 85%;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item .bbpab-notif-body a {
+  height: auto;
+  display: inline-block;
+  padding: 0;
+  line-height: 20px;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item .bbpab-notif-body a span {
+  font-style: italic;
+  color: #aaa;
+}
+#wpadminbar #wp-admin-bar-notes #bbpab-notes-panel .bbpab-notifications ul li.bbpab-notif-item:hover {
+  background: #fff;
+}
