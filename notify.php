@@ -94,7 +94,7 @@ class BBP_AB_Notification {
      * Nothing being called here yet.
      */
     public function activate() {
-
+        $this->create_table();
     }
 
     /**
@@ -106,7 +106,12 @@ class BBP_AB_Notification {
 
     }
 
-    private function create_db() {
+    /**
+     * Create the database table
+     *
+     * @return void
+     */
+    private function create_table() {
         global $wpdb;
 
         $table = bbp_ab_get_table();
@@ -123,6 +128,9 @@ class BBP_AB_Notification {
             PRIMARY KEY (`id`),
             KEY `user_id` (`user_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $sql );
     }
 
     /**
