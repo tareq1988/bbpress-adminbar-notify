@@ -1,3 +1,6 @@
+/* jshint devel:true */
+/* global wp */
+
 jQuery(document).ready(function($) {
 
     // Initial pulse data
@@ -6,44 +9,13 @@ jQuery(document).ready(function($) {
     };
 
     // Change default beat tick period
-    wp.heartbeat.interval('fast'); // slow (1 beat every 60 seconds), standard (1 beat every 15 seconds), fast (1 beat every 5 seconds)
+    // wp.heartbeat.interval('fast'); // slow (1 beat every 60 seconds), standard (1 beat every 15 seconds), fast (1 beat every 5 seconds)
 
     // Initiate namespace with bbpabn data
     wp.heartbeat.enqueue('bbpabn', bbpabn, false);
 
-    // // Hook into the heartbeat-send
-    // jQuery(document).on('heartbeat-send.bbpabn', function(e, data) {
-
-    //     // Send data to Heartbeat
-    //     if (data.hasOwnProperty('bbpabn')) {
-
-    //         if (data.bbpabn.debug === 'true') {
-
-    //             console.log('Data Sent: ');
-    //             console.log(data);
-    //             console.log('------------------');
-
-    //         } // End If Statement
-
-    //     } // End If Statement
-
-    // });
-
     // Listen for the custom event "heartbeat-tick" on $(document).
     jQuery(document).on('heartbeat-tick.bbpabn', function(e, data) {
-
-        // // Receive Data back from Heartbeat
-        // if (data.hasOwnProperty('bbpabn')) {
-
-        //     if (data.bbpabn.debug === 'true') {
-
-        //         console.log('Data Received: ');
-        //         console.log(data);
-        //         console.log('------------------');
-
-        //     } // End If Statement
-
-        // } // End If Statement
 
         if ( typeof data.bbpabn !== 'undefined' ) {
             jQuery.each(data.bbpabn, function(index, val) {
@@ -56,10 +28,21 @@ jQuery(document).ready(function($) {
 
     });
 
-    $('#wp-admin-bar-notes').on('click', function(event) {
-        event.preventDefault();
-
+    // show/hide admin bar
+    $('#wp-admin-bar-notes').on('click', function(e) {
         $('#bbpab-notes-panel').toggle();
+        $(this).toggleClass('open');
+
+        e.stopPropagation();
+    });
+
+    $(document.body).click(function() {
+        $('#bbpab-notes-panel').hide();
+        $('#wp-admin-bar-notes').removeClass('open');
+    });
+
+    $('#bbpab-notes-panel').click(function(e) {
+        e.stopPropagation();
     });
 
 });
