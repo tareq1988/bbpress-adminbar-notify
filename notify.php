@@ -67,6 +67,9 @@ class BBP_AB_Notification {
         // Localize our plugin
         add_action( 'init', array( $this, 'localization_setup' ) );
 
+        // hook the schedule event
+        add_action( 'bbp_ab_clear_notifications', array( $this, 'clear_notifications' ) );
+
         // Loads frontend scripts and styles
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu'), 130 );
@@ -89,21 +92,26 @@ class BBP_AB_Notification {
     }
 
     /**
-     * Placeholder for activation function
+     * Plugin activation function
      *
-     * Nothing being called here yet.
+     * @return void
      */
     public function activate() {
         $this->create_table();
+
+        // schedule the cleanup event
+        if ( false == wp_next_scheduled( 'bbp_ab_clear_notifications' ) ){
+            wp_schedule_event( time(), 'daily', 'bbp_ab_clear_notifications' );
+        }
     }
 
     /**
-     * Placeholder for deactivation function
+     * Plugin deactivation function
      *
-     * Nothing being called here yet.
+     * @return void
      */
     public function deactivate() {
-
+        wp_clear_scheduled_hook( 'bbp_ab_clear_notifications' );
     }
 
     /**
@@ -233,6 +241,29 @@ class BBP_AB_Notification {
         include dirname( __FILE__ ) . '/includes/render-admin-bar.php';
 
         return ob_get_clean();
+    }
+
+    /**
+     * Run the cron event
+     *
+     * @return void
+     */
+    public function clear_notifications() {
+        $this->delete_old_records();
+    }
+
+    /**
+     * Delete old notification records
+     *
+     * @param  integer $days
+     *
+     * @return void
+     */
+    public function delete_old_records( $days = 7 ) {
+        global $wpdb;
+
+        $sql = sprintf( 'DELETE FROM %s WHERE created <= CURDATE() - INTERVAL %d DAY', bbp_ab_get_table(), $days );
+        $wpdb->query( $sql );
     }
 
 }
