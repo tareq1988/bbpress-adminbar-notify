@@ -8,8 +8,8 @@
 class BBP_AB_bbPress {
 
     function __construct() {
-        add_action( 'bbp_new_topic', array( $this, 'on_new_topic' ), 10, 2 );
-        add_action( 'bbp_new_reply', array( $this, 'on_new_reply' ), 10, 2 );
+        add_action( 'bbp_new_topic', array( $this, 'on_new_content' ), 10, 2 );
+        add_action( 'bbp_new_reply', array( $this, 'on_new_content' ), 10, 2 );
     }
 
     /**
@@ -20,35 +20,15 @@ class BBP_AB_bbPress {
      *
      * @return void
      */
-    function on_new_topic( $topic_id, $forum_id ) {
+    function on_new_content( $topic_id, $forum_id ) {
         $users        = bbp_ab_get_users();
         $current_user = get_current_user_id();
 
         if ( $users ) {
             foreach ($users as $user_id) {
                 if ( $user_id != $current_user ) {
-                    $this->insert_notification( $user_id, 'topic', $topic_id, $forum_id );
-                }
-            }
-        }
-    }
-
-    /**
-     * Insert notification on a new reply creation
-     *
-     * @param  int $reply_id
-     * @param  int $topic_id
-     *
-     * @return void
-     */
-    function on_new_reply( $reply_id, $topic_id ) {
-        $users        = bbp_ab_get_users();
-        $current_user = get_current_user_id();
-
-        if ( $users ) {
-            foreach ($users as $user_id) {
-                if ( $user_id != $current_user ) {
-                    $this->insert_notification( $user_id, 'reply', $reply_id, $topic_id );
+                    $type = ( current_filter() == 'bbp_new_topic' ) ? 'topic' : 'reply';
+                    $this->insert_notification( $user_id, $type, $topic_id, $forum_id );
                 }
             }
         }
