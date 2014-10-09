@@ -1,5 +1,4 @@
 #wpadminbar * .noticon {
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5) !important;
   margin-top: 1px !important;
   opacity: .6;
 }
@@ -12,18 +11,16 @@
   display: inline-block;
 }
 #wpadminbar #wp-admin-bar-notes {
-  padding-right: 1px!important;
   cursor: pointer;
 }
-#wpadminbar #wp-admin-bar-notes .ab-item {
-  width: 26px;
-}
-#wpadminbar #wp-admin-bar-notes > .ab-item {
-  padding: 0 5px!important;
-}
-#wpadminbar #wp-admin-bar-notes.hover > .ab-item {
+#wpadminbar #wp-admin-bar-notes.hover > .ab-item,
+#wpadminbar #wp-admin-bar-notes.open {
   color: #fafafa;
-  background: none;
+  background: #f5f5f5;
+}
+#wpadminbar #wp-admin-bar-notes.hover > .ab-item .noticon-notification:before,
+#wpadminbar #wp-admin-bar-notes.open .noticon-notification:before {
+  color: #222;
 }
 #wpadminbar #wp-admin-bar-notes .bbpab-notes-panel-header {
   padding: 0 10px;
