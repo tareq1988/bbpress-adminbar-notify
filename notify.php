@@ -112,16 +112,17 @@ class BBP_AB_Notification {
         $table = bbp_ab_get_table();
 
         $sql= "CREATE TABLE IF NOT EXISTS $table (
-          `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-          `user_id` bigint(20) DEFAULT NULL,
-          `type` varchar(10) DEFAULT NULL,
-          `object_id` bigint(20) DEFAULT NULL,
-          `parent_object` bigint(20) DEFAULT NULL,
-          `created` timestamp NULL DEFAULT NULL,
-          `last_read` timestamp NULL DEFAULT NULL,
-          PRIMARY KEY (`id`),
-          KEY `user_id` (`user_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+            `user_id` bigint(20) DEFAULT NULL,
+            `type` varchar(10) DEFAULT NULL,
+            `object_id` bigint(20) DEFAULT NULL,
+            `parent_object` bigint(20) DEFAULT NULL,
+            `created` timestamp NULL DEFAULT NULL,
+            `last_read` timestamp NULL DEFAULT NULL,
+            `notify` tinyint(1) unsigned NOT NULL DEFAULT '0',
+            PRIMARY KEY (`id`),
+            KEY `user_id` (`user_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
     }
 
     /**
