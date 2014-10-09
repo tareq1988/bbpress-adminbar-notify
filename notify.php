@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: bbPress admin bar notification
+Plugin Name: bbPress Adminbar Notification
 Plugin URI: http://tareq.wedevs.com/
 Description: Facebook like notification system for bbPress
 Version: 0.1
