@@ -15,12 +15,13 @@
                         </div>
                         <div class="bbpab-notif-body">
                             <?php
+                            $text = '';
+
                             if ( $notif->type == 'topic' ) {
                                 $text = sprintf( '<a href="%s">%s', bbp_get_topic_permalink( $notif->object_id ), __( 'Topic: ', 'bbpab' ) . bbp_get_topic_title( $notif->object_id ) );
                                 $text .= sprintf( ' <span>' . __( 'by %s', 'bbpab' ) . '</span></a>', get_userdata( $notif->author )->display_name );
 
                             } elseif ( $notif->type == 'reply' ) {
-                                $title = __( 'New reply:', 'bbpab' );
                                 $text = sprintf( '<a href="%s">%s', bbp_get_reply_permalink( $notif->object_id ), __( 'Reply: ', 'bbpab' ) . bbp_get_topic_title( $notif->parent_object ) );
                                 $text .= sprintf( ' <span>' . __( 'by %s', 'bbpab' ) . '</span></a>', get_userdata( $notif->author )->display_name );
                             }
