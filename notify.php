@@ -259,7 +259,7 @@ class BBP_AB_Notification {
      *
      * @return void
      */
-    public function delete_old_records( $days = 7 ) {
+    public function delete_old_records( $days = 14 ) {
         global $wpdb;
 
         $sql = sprintf( 'DELETE FROM %s WHERE created <= CURDATE() - INTERVAL %d DAY', bbp_ab_get_table(), $days );
