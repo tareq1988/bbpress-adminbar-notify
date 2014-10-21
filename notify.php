@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: bbPress Adminbar Notification
+Plugin Name: bbPress Live Notification
 Plugin URI: http://tareq.wedevs.com/
 Description: Facebook like notification system for bbPress
 Version: 0.1
@@ -206,6 +206,10 @@ class BBP_AB_Notification {
      */
     function admin_bar_menu() {
         global $wp_admin_bar, $current_blog;
+
+        if ( ! function_exists( 'bbp_get_reply_permalink' ) ) {
+            return;
+        }
 
         if ( ! current_user_can( 'administrator' ) && ! current_user_can( 'bbp_moderator' ) ) {
             return;
